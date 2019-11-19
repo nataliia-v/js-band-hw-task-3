@@ -1,4 +1,4 @@
-export default (dataId, Model, fieldsConfig, onSubmit) => {
+export default (localStorageKey, getModel, fieldsConfig, onSubmit) => {
   const formRoot = document.createElement('div');
   formRoot.classList.add('formRoot');
 
@@ -20,20 +20,20 @@ export default (dataId, Model, fieldsConfig, onSubmit) => {
       formField.value = '';
     });
 
-    const existedRecords = JSON.parse(localStorage.getItem(dataId));
+    const existedRecords = JSON.parse(localStorage.getItem(localStorageKey));
 
-    const newItem = new Model(result);
-    ///method
+    const newItem = getModel(result);
+    // method
     // console.log(newItem.showAverageSpeed());
 
     const newRecords = JSON.stringify(existedRecords ? [...existedRecords, newItem] : [newItem]);
 
-    localStorage.setItem(dataId, newRecords);
+    localStorage.setItem(localStorageKey, newRecords);
 
     if (onSubmit) onSubmit();
   });
   const formName = document.createElement('h3');
-  formName.textContent = dataId;
+  formName.textContent = localStorageKey;
   formName.className = 'form-title';
 
   fieldsConfig.forEach(({ name, type, options }) => {

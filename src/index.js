@@ -5,8 +5,6 @@ import formBuilder from './utils/helpers/formBuilder';
 import renderTable from './utils/helpers/renderTable';
 import createRenderCostOfDeliveryForm from './utils/helpers/renderCostOfDeliveryForm';
 import { commonFields, shipFields, truckFields, costOfDeliveryFields } from './forms/constants';
-import Ship from './models/Ship';
-import Truck from './models/Truck';
 
 import table from './components/table';
 import {
@@ -14,6 +12,9 @@ import {
   SHIPS_LIST_STORAGE_KEY,
   TRUCKS_LIST_STORAGE_KEY,
 } from './utils/constants';
+import TransportFactory from './models/TransportFactory';
+
+const trasportFactory = new TransportFactory();
 
 const root = document.getElementById('root');
 
@@ -40,14 +41,24 @@ const renderCostOfDeliveryTable = renderTable(
 );
 const renderCostOfDeliveryForm = createRenderCostOfDeliveryForm();
 
-const shipForm = formBuilder(SHIPS_LIST_STORAGE_KEY, Ship, allShipFields, () => {
-  renderShipsTable();
-  renderCostOfDeliveryForm(renderCostOfDeliveryTable);
-});
-const truckForm = formBuilder(TRUCKS_LIST_STORAGE_KEY, Truck, allTruckFields, () => {
-  renderTrucksTable();
-  renderCostOfDeliveryForm(renderCostOfDeliveryTable);
-});
+const shipForm = formBuilder(
+  SHIPS_LIST_STORAGE_KEY,
+  formData => trasportFactory.create('ship', formData),
+  allShipFields,
+  () => {
+    renderShipsTable();
+    renderCostOfDeliveryForm(renderCostOfDeliveryTable);
+  },
+);
+const truckForm = formBuilder(
+  TRUCKS_LIST_STORAGE_KEY,
+  formData => trasportFactory.create('truck', formData),
+  allTruckFields,
+  () => {
+    renderTrucksTable();
+    renderCostOfDeliveryForm(renderCostOfDeliveryTable);
+  },
+);
 
 formsContainer.appendChild(shipForm);
 formsContainer.appendChild(truckForm);
