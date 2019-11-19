@@ -1,0 +1,81 @@
+{
+  "name": "task-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode development",
+    "build": "webpack --mode production",
+    "serve-build": "static build",
+    "eslint": "eslint --ext js src",
+    "eslint-fix": "eslint --fix --ext js src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nataliia-v/js-band-hw-task-1.git"
+  },
+  "author": "Nataliia Verbenska",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nataliia-v/js-band-hw-task-1/issues"
+  },
+  "homepage": "https://github.com/nataliia-v/js-band-hw-task-1#readme",
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "css-loader": "^1.0.0",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-loader": "^2.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "favicons-webpack-plugin": "0.0.9",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
+    "mini-css-extract-plugin": "^0.4.2",
+    "node-sass": "^4.9.3",
+    "node-static": "^0.7.10",
+    "prettier": "1.18.2",
+    "pug": "^2.0.3",
+    "pug-loader": "^2.4.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.0",
+    "stylelint": "^9.5.0",
+    "stylelint-webpack-plugin": "^0.10.5",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-dev-server": "^3.9.0",
+    "webpack-hot-middleware": "^2.25.0",
+    "webpack-merge": "^4.1.4"
+  },
+  "eslintConfig": {
+    "extends": [
+      "airbnb-base",
+      "prettier"
+    ]
+  },
+  "dependencies": {
+    "development": "0.0.6",
+    "normalize.css": "^8.0.0",
+    "npm": "^6.12.0",
+    "uuid": "^3.3.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run eslint",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
