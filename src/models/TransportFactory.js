@@ -1,10 +1,10 @@
-import Ship from './Ship.js';
-import Truck from './Truck.js';
+import Ship from './Ship';
+import Truck from './Truck';
 
 class TransportFactory {
   static create(type, params) {
     const defaultTransport = new Truck(params);
-
+    /* eslint-disable indent */
     switch (type) {
       case 'ship':
         return new Ship(params);
@@ -14,6 +14,7 @@ class TransportFactory {
       default:
         return defaultTransport;
     }
+    /* eslint-enable indent */
   }
 }
 

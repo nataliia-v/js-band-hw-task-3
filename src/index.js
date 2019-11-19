@@ -14,8 +14,6 @@ import {
 } from './utils/constants';
 import TransportFactory from './models/TransportFactory';
 
-const trasportFactory = new TransportFactory();
-
 const root = document.getElementById('root');
 
 const formsContainer = document.createElement('div');
@@ -43,7 +41,7 @@ const renderCostOfDeliveryForm = createRenderCostOfDeliveryForm();
 
 const shipForm = formBuilder(
   SHIPS_LIST_STORAGE_KEY,
-  formData => trasportFactory.create('ship', formData),
+  formData => TransportFactory.create('ship', formData),
   allShipFields,
   () => {
     renderShipsTable();
@@ -52,7 +50,7 @@ const shipForm = formBuilder(
 );
 const truckForm = formBuilder(
   TRUCKS_LIST_STORAGE_KEY,
-  formData => trasportFactory.create('truck', formData),
+  formData => TransportFactory.create('truck', formData),
   allTruckFields,
   () => {
     renderTrucksTable();

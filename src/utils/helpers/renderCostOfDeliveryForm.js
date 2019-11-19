@@ -3,8 +3,6 @@ import formBuilder from './formBuilder';
 import { COSTS_OF_DELIVERY_STORAGE_KEY } from '../constants';
 import CostDeliveryFactory from '../../models/CostDeliveryFactory';
 
-const costDeliveryFactory = new CostDeliveryFactory();
-
 export default () => {
   const costOfDeliveryFormContainer = document.createElement('div');
   costOfDeliveryFormContainer.className = 'costOfDeliveryContainer';
@@ -15,7 +13,7 @@ export default () => {
   return renderTable => {
     const costOfDeliveryForm = formBuilder(
       COSTS_OF_DELIVERY_STORAGE_KEY,
-      formData => costDeliveryFactory.create(formData),
+      formData => CostDeliveryFactory.create(formData),
       getCostOfDeliveryFields(),
       renderTable,
     );

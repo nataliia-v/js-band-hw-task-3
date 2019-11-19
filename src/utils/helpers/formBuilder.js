@@ -1,3 +1,7 @@
+import LocalStorageService from '../services/LocalStorageService';
+
+const localStorageService = new LocalStorageService();
+
 export default (localStorageKey, getModel, fieldsConfig, onSubmit) => {
   const formRoot = document.createElement('div');
   formRoot.classList.add('formRoot');
@@ -20,15 +24,14 @@ export default (localStorageKey, getModel, fieldsConfig, onSubmit) => {
       formField.value = '';
     });
 
-    const existedRecords = JSON.parse(localStorage.getItem(localStorageKey));
+    const existedRecords = localStorageService.getItem(localStorageKey);
 
     const newItem = getModel(result);
-    // method
     // console.log(newItem.showAverageSpeed());
 
-    const newRecords = JSON.stringify(existedRecords ? [...existedRecords, newItem] : [newItem]);
+    const newRecords = existedRecords ? [...existedRecords, newItem] : [newItem];
 
-    localStorage.setItem(localStorageKey, newRecords);
+    localStorageService.setItem(localStorageKey, newRecords);
 
     if (onSubmit) onSubmit();
   });

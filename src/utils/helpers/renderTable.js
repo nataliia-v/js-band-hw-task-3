@@ -1,3 +1,7 @@
+import LocalStorageService from '../services/LocalStorageService';
+
+const localStorageService = new LocalStorageService();
+
 export default (tableCreator, dataId, tableContainerId) => {
   const root = document.getElementById('root');
   const tableContainer = document.createElement('div');
@@ -5,7 +9,7 @@ export default (tableCreator, dataId, tableContainerId) => {
   root.appendChild(tableContainer);
 
   return () => {
-    const data = JSON.parse(localStorage.getItem(dataId));
+    const data = localStorageService.getItem(dataId);
 
     const table = tableCreator(data);
 
