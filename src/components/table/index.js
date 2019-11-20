@@ -11,11 +11,6 @@ export default (caption, columns) => {
 
   columns.forEach(column => {
     const columnCell = document.createElement('th');
-    if (column === 'averageSpeed') {
-      column = column + ' km';
-      console.log(column);
-    }
-    console.log(column);
     columnCell.textContent = column;
     thead.appendChild(columnCell);
   });
